@@ -39,6 +39,7 @@ def close(request, task_id):
     task.completed = True
     task.save()
     return redirect(index)
+    
 def update(request, task_id):
    
     if request.method == 'POST':
