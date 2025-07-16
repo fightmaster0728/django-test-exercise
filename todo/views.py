@@ -43,6 +43,7 @@ def close(request, task_id):
 def update(request, task_id):
    
     if request.method == 'POST':
+        task = Task.objects.get(pk=task_id)
         task.title = request.POST['title']
         task.due_at = make_aware(parse_datetime(request.POST['due_at']))
         task.save()
