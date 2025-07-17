@@ -8,13 +8,20 @@ def index(request):
     if request.method == 'POST':
         task = Task(
             title=request.POST['title'],
+
             due_at=make_aware(parse_datetime(request.POST['due_at'])),
             memo=request.POST.get('memo', '')
+
+
         )
         task.save()
 
-    if request.GET.get('order') == 'due':
+    order = request.GET.get('order')
+
+    if order == 'due':
         tasks = Task.objects.order_by('due_at')
+    elif order == 'status':
+        tasks = Task.objects.order_by('completed', '-posted_at')
     else:
         tasks = Task.objects.order_by('-posted_at')
 
@@ -30,7 +37,9 @@ def detail(request, task_id):
         raise Http404("Task does not exist")
 
     context = {
+
         'task': task
+
     }
     return render(request, 'todo/detail.html', context)
 
