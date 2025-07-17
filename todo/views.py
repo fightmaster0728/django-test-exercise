@@ -41,7 +41,10 @@ def close(request, task_id):
     return redirect(index)
     
 def update(request, task_id):
-   
+    try:
+        task = Task.objects.get(pk=task_id)
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
     if request.method == 'POST':
         task = Task.objects.get(pk=task_id)
         task.title = request.POST['title']
