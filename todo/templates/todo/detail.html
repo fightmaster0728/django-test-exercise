@@ -17,6 +17,10 @@
     {% endif %}
     {% if task.completed %}
     <li>Status: Completed</li>
+    {% if task.memo %}
+    <li>Memo: {{ task.memo }}</li>
+    {% endif %}
+
     {% else %}
     <li>Status: Not Completed</li>
     {% endif %}
