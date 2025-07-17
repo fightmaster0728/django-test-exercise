@@ -6,7 +6,6 @@
   <title>To Do Application</title>
   <meta charset="UTF-8">
   <meta name="author" content="INIAD">
-  <link rel="stylesheet" href="{% static 'todo/style.css' %}">
 </head>
 
 <body>
@@ -18,18 +17,27 @@
     <div>
       <label for="titleInput">Title</label><br>
       <input id="titleInput" name="title" type="text" placeholder="Input title">
-      <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
-      <a href="{% url 'index' %}?order=post">Sort by Posted Date</a> |
-      <a href="{% url 'index' %}?order=status">Sort by Status</a>
     </div>
     <div>
       <label for="dueInput">Due at:</label><br>
       <input id="dueInput" name="due_at" type="datetime-local">
     </div>
     <div>
+      <label for="memoInput">Memo</label><br>
+      <textarea id="memoInput" name="memo"></textarea>
+    </div>
+    <div>
       <button type="submit">Submit</button>
     </div>
   </form>
+
+  <br>
+
+  <div>
+    <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
+    <a href="{% url 'index' %}?order=post">Sort by Posted Date</a> |
+    <a href="{% url 'index' %}?order=status">Sort by Status</a>
+  </div>
 
   <br>
 
@@ -43,11 +51,6 @@
 
   <br>
 
-  <div>
-    <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
-    <a href="{% url 'index' %}?order=post">Sort by Posted Date</a>
-  </div>
-
   {% for task in tasks %}
   <div class="text">
     <h2><a href="{% url 'detail' task.id %}">{{ task.title }}</a></h2>
@@ -60,6 +63,9 @@
       <li>Status: Completed</li>
       {% else %}
       <li>Status: Not Completed</li>
+      {% endif %}
+      {% if task.memo %}
+      <li>Memo: {{ task.memo }}</li>
       {% endif %}
     </ul>
   </div>
