@@ -1,0 +1,126 @@
+/* アニメーション用 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2c80b4;
+}
+
+.text {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 1s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.text h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+}
+
+.text ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.text li {
+    padding: 4px 0;
+}
+
+div>a {
+    margin: 0 10px;
+}
