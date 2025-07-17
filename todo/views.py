@@ -7,16 +7,23 @@ from todo.models import Task
 # Create your views here.
 def index(request):
     if request.method == 'POST':
-        task = Task(title=request.POST['title'], due_at=make_aware(parse_datetime(request.POST['due_at'])))
+        task = Task(
+            title=request.POST['title'],
+            due_at=make_aware(parse_datetime(request.POST['due_at']))
+        )
         task.save()
 
-    if request.GET.get('order') == 'due':
+    query = request.GET.get('q')  # ← 検索語
+    if query:
+        tasks = Task.objects.filter(title__icontains=query)
+    elif request.GET.get('order') == 'due':
         tasks = Task.objects.order_by('due_at')
     else:
         tasks = Task.objects.order_by('-posted_at')
 
     context = {
-        'tasks' : tasks
+        'tasks': tasks,
+        'query': query or '',
     }
     return render(request, 'todo/index.html', context)
 

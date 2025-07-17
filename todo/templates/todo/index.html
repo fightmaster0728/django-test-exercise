@@ -27,6 +27,15 @@
     </form>
     <br>
 
+    <form method="get" action=".">
+      <input type="text" name="q" placeholder="タイトルで検索" value="{{ query }}">
+      <button type="submit">検索</button>
+      {% if query %}
+        <a href="{% url 'index' %}">リセット</a>
+      {% endif %}
+    </form>
+    <br>
+
     <div>
       <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
       <a href="{% url 'index' %}?order=post">Sort by Posted Date</a>
