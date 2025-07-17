@@ -2,52 +2,75 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
-    <title>To Do Application</title>
-    <meta charset="UTF-8">
-    <meta name="author" content="INIAD">
-  </head>
+<head>
+  <title>To Do Application</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="INIAD">
+  <script src="https://kit.fontawesome.com/0ac0e77069.js" crossorigin="anonymous"></script>
+  <style>
+    #title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    #title h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    #title i {
+      font-size: 1.5em;
+    }
+  </style>
+</head>
 
-  <body>
+<body>
+  <div id="title">
     <h1>Sample To Do Application</h1>
-    <p>You can submit tasks from the following form.</p>
-    <form action="{% url 'index' %}" method="post">
-      {% csrf_token %}
-      <div>
-        <label for="titleInput">Title</label><br>
-        <input id="titleInput" name="title" type="text" placeholder="Input title">
-      </div>
-      <div>
-        <label for="dueInput">Due at:</label><br>
-        <input id="dueInput" name="due_at" type="datetime-local">
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-    <br>
+    <i class="fa-solid fa-list-check"></i>
+  </div>
 
+  <p>You can submit tasks from the following form.</p>
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
     <div>
-      <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
-      <a href="{% url 'index' %}?order=post">Sort by Posted Date</a>
+      <label for="titleInput">Title</label><br>
+      <input id="titleInput" name="title" type="text" placeholder="Input title">
     </div>
+    <div>
+      <label for="dueInput">Due at:</label><br>
+      <input id="dueInput" name="due_at" type="datetime-local">
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+  <br>
 
-    {% for task in tasks %}
-    <div class="text">
-      <h2><a href="{% url 'detail' task.id %}">{{ task.title }}</a></h2>
-      <ul>
-        <li>Posted at: {{ task.posted_at }}</li>
-        {% if task.due_at %} 
-        <li>Due at: {{ task.due_at }}</li>
-        {% endif %}
-        {% if task.completed %} 
-        <li>Status: Completed</li>
-        {% else %}
-        <li>Status: Not Completed</li>
-        {% endif %}
-      </ul>
-    </div>
-    {% endfor %}
-  </body>
+  <div>
+    <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
+    <a href="{% url 'index' %}?order=post">Sort by Posted Date</a> |
+    <a href="{% url 'index' %}?order=status">Sort by Status</a>
+  </div>
+
+  {% for task in tasks %}
+  <div class="text">
+    <h2><a href="{% url 'detail' task.id %}">{{ task.title }}</a></h2>
+    <ul>
+      <li>Posted at: {{ task.posted_at }}</li>
+      {% if task.due_at %}
+      <li>Due at: {{ task.due_at }}</li>
+      {% endif %}
+      {% if task.completed %}
+      <li>Status: Completed</li>
+      {% else %}
+      <li>Status: Not Completed</li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+</body>
 
 </html>
