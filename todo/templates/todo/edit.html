@@ -14,7 +14,7 @@
   <p>You can edit tasks from the following form.</p>
   <form action="{% url 'update' task.id%}" method="post">
     {% csrf_token %}
-    <div class="">
+    <div class="text">
       <label for="titleInput">Title</label><br>
       <input id="titleInput" name="title" type="text" placeholder="Input title" value="{{ task.title }}">
     </div>
@@ -28,5 +28,6 @@
   </form>
   <br>
 </body>
+
 
 </html>
