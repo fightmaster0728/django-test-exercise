@@ -16,18 +16,21 @@ def index(request):
         )
         task.save()
 
+    query = request.GET.get('q')
     order = request.GET.get('order')
 
-    if order == 'due':
+    if query:
+        tasks = Task.objects.filter(title__icontains=query)
+    elif order == 'due':
         tasks = Task.objects.order_by('due_at')
-    elif order == 'status':
-        tasks = Task.objects.order_by('completed', '-posted_at')
     else:
         tasks = Task.objects.order_by('-posted_at')
 
     context = {
-        'tasks': tasks
+        'tasks': tasks,
+        'query': query or '',
     }
+
     return render(request, 'todo/index.html', context)
 
 def detail(request, task_id):
